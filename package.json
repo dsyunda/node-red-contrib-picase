@@ -1,0 +1,23 @@
+{
+  "name": "@dsyunda/node-red-contrib-picase",
+  "version": "1.0.0",
+  "description": "Libreria de la Control PiCase",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "PiCase", "Pi", "Control", "GPIO", "node-red", "Raspberry"
+  ],
+  "repository": {
+  "type": "git",
+  "url": "https://github.com/dsyunda/node-red-contrib-picase"
+  },
+  "author": "David Santiago Yunda Ramos",
+  "license": "Apache-2.0",
+  "node-red": {
+    "version": ">=2.0.0",
+    "nodes": {
+      "picase-gpio": "picase-control.js"
+    }
+  }
+}

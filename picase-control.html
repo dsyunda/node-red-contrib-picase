@@ -1,0 +1,397 @@
+<script type="text/html" data-template-name="DIs">
+    <div class="form-row" style="min-width: 540px">
+		<label><i class="fa fa-cog"></i> DI</label>
+        <select type="text" id="node-input-selectInput" style="width:100px;">
+            <option value="select" label="Select" selected></option>
+            <option value="4" label="DI0"></option>
+            <option value="5" label="DI1"></option>
+            <option value="6" label="DI2"></option>
+            <option value="12" label="DI3"></option>
+            <option value="13" label="DI4"></option>
+            <option value="16" label="DI5"></option>
+            <option value="17" label="DI6"></option>
+            <option value="18" label="DI7"></option>
+        </select>  
+    </div>
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+</script>
+
+<script type="text/javascript">
+
+    var bcm2di = {
+        "4": "0", "5": "1", "6": "2", "12": "3", "13": "4", "16": "5", "17": "6", "18": "7"
+    }
+
+    RED.nodes.registerType('DIs', {
+        category: 'PiCase',
+        color: "#c6dbef",
+        icon: 'serial.png',
+        defaults: {
+            name: { value: "" },
+            selectInput: { value: "select" }
+        },
+        inputs: 0,
+        outputs: 1,
+
+        label: function () {
+            return this.name || this.selectInput == "select" ? this.name || "DI: " : "DI: " + bcm2di[this.selectInput];
+        },
+        outputLabels: function () { return "DI " + bcm2di[this.selectInput]; }
+    });
+</script>
+
+<script type="text/html" data-template-name="Buttons">
+    <div class="form-row" style="min-width: 540px">
+		<label><i class="fa fa-cog"></i> BOTON</label>
+        <select type="text" id="node-input-selectInput" style="width:100px;">
+            <option value="select" label="Select" selected></option>
+            <option value="0" label="S0"></option>
+            <option value="1" label="S1"></option>
+            <option value="2" label="S2"></option>
+            <option value="3" label="S3"></option>
+            <option value="4" label="S4"></option>
+            <option value="5" label="S5"></option>
+            <option value="6" label="S6"></option>
+            <option value="7" label="S7"></option>
+        </select>
+    </div>
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+</script>
+
+<script type="text/javascript">
+    RED.nodes.registerType('Buttons', {
+        category: 'PiCase',
+        color: "#c6dbef",
+        icon: 'serial.png',
+        defaults: {
+            name: { value: "" },
+            selectInput: { value: "select" }
+        },
+        inputs: 0,
+        outputs: 1,
+
+        label: function () {
+            return this.name || this.selectInput == "select" ? this.name || "BUTTON: " : "BUTTON: " + this.selectInput;
+        },
+        outputLabels: function () { return this.selectInput == "select" ? "S " + undefined : "S" + this.selectInput; }
+    });
+</script>
+
+<script type="text/html" data-template-name="LEDs">
+    <div class="form-row" style="min-width: 540px">
+		<label><i class="fa fa-cog"></i> LED</label>
+        <select type="text" id="node-input-selectInput" style="width:100px;">
+            <option value="select" label="Select" selected></option>
+            <option value="0" label="D0"></option>
+            <option value="1" label="D1"></option>
+            <option value="2" label="D2"></option>
+            <option value="3" label="D3"></option>
+            <option value="4" label="D4"></option>
+            <option value="5" label="D5"></option>
+            <option value="6" label="D6"></option>
+            <option value="7" label="D7"></option>
+        </select>
+    </div>
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+</script>
+
+<script type="text/javascript">
+    RED.nodes.registerType('LEDs', {
+        category: 'PiCase',
+        color: "#c6dbef",
+        icon: 'serial.png',
+        defaults: {
+            name: { value: "" },
+            selectInput: { value: "select" }
+        },
+        inputs: 1,
+        outputs: 0,
+
+        label: function () {
+            return this.name || this.selectInput == "select" ? this.name || "LED: " : "LED: " + this.selectInput;
+        },
+        inputLabels: function () { 
+            return this.selectInput == "select" ? "D " + undefined : "D" + this.selectInput; }
+    });
+</script>
+
+<script type="text/html" data-template-name="DOs">
+    <div class="form-row" style="min-width: 540px">
+		<label><i class="fa fa-cog"></i> DO</label>
+        <select type="text" id="node-input-selectInput" style="width:100px;">
+            <option value="select" label="Select" selected></option>
+            <option value="0" label="DO0"></option>
+            <option value="1" label="DO1"></option>
+            <option value="2" label="DO2"></option>
+            <option value="3" label="DO3"></option>
+            <option value="4" label="DO4"></option>
+            <option value="5" label="DO5"></option>
+            <option value="6" label="DO6"></option>
+            <option value="7" label="DO7"></option>
+        </select>
+    </div>
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+</script>
+
+<script type="text/javascript">
+
+    RED.nodes.registerType('DOs', {
+        category: 'PiCase',
+        color: "#c6dbef",
+        icon: 'serial.png',
+        defaults: {
+            name: { value: "" },
+            selectInput: { value: "select" }
+        },
+        inputs: 1,
+        outputs: 0,
+
+        label: function () {
+            return this.name || this.selectInput == "select" ? this.name || "DO: " : "DO: " + this.selectInput;
+        },
+        inputLabels: function () { return "DO " + this.selectInput; }
+    });
+</script>
+
+<script type="text/html" data-template-name="ADCs">
+    <div class="form-row" style="min-width: 540px">
+		<label><i class="fa fa-cog"></i> ADC</label>
+        <select type="text" id="node-input-selectType" style="width:100px;">
+            <option value="select" label="Select" selected></option>
+            <option value="1" label="Voltage"></option>
+            <option value="2" label="Current"></option>
+        </select>
+    </div>
+    <div class="form-row" style="min-width: 540px" id="node-set-selectVoltage">
+		<label><i class="fa fa-cog"></i> VI</label>
+        <select type="text" id="node-input-selectVoltage" style="width:100px;">
+            <option value="select" label="Select" selected></option>
+            <option value="0" label="VI 1"></option>
+            <option value="1" label="VI 2"></option>
+        </select>
+    </div>
+    <div class="form-row" style="min-width: 540px" id="node-set-selectCurrent">
+		<label><i class="fa fa-cog"></i> II</label>
+        <select type="text" id="node-input-selectCurrent" style="width:100px;">
+            <option value="select" label="Select" selected></option>
+            <option value="3" label="II 1"></option>
+            <option value="2" label="II 2"></option>
+        </select>
+    </div>
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+</script>
+
+<script type="text/javascript">
+
+    var select2des = {
+        "0": "1", "1": "2", "2": "2", "3": "1"
+    }
+
+    RED.nodes.registerType('ADCs', {
+        category: 'PiCase',
+        color: "#C6EFD1",
+        icon: 'status.png',
+        defaults: {
+            name: { value: "" },
+            selectType: { value: "select" },
+            selectVoltage: { value: "select" },
+            selectCurrent: { value: "select" }
+        },
+        inputs: 0,
+        outputs: 1,
+
+        label: function () {
+            if (this.selectType == "select") { return this.name || "ADC:" }
+            else if (this.selectType == "1" && this.selectVoltage != "select") { return this.name || "VI: " + select2des[this.selectVoltage] }
+            else if (this.selectType == "1" && this.selectVoltage == "select") { return this.name || "VI: " }
+            else if (this.selectType == "2" && this.selectCurrent != "select") { return this.name || "II: " + select2des[this.selectCurrent] }
+            else if (this.selectType == "2" && this.selectCurrent == "select") { return this.name || "II: " }
+        },
+        outputLabels: function () {
+            if (this.selectType == "1" && this.selectVoltage != "select") { return "VI" + select2des[this.selectVoltage] }
+            else if (this.selectType == "1" && this.selectVoltage == "select") { return "VI undefined" }
+            else if (this.selectType == "2" && this.selectCurrent != "select") { return "II" + select2des[this.selectCurrent] }
+            else if (this.selectType == "2" && this.selectCurrent == "select") { return "II undefined" }
+            else { return "ADC: undefined" }
+        },
+        oneditprepare: function () {
+            var hidestate = function () {
+                if ($("#node-input-selectType").val() == 1) {
+                    $('#node-set-selectVoltage').show();
+                    $('#node-set-selectCurrent').hide();
+                }
+                if ($("#node-input-selectType").val() == 2) {
+                    $('#node-set-selectVoltage').hide();
+                    $('#node-set-selectCurrent').show();
+                }
+                if ($("#node-input-selectType").val() === "select") {
+                    $("#node-set-selectCurrent").hide();
+                    $('#node-set-selectVoltage').hide();
+                }
+            };
+            $("#node-input-selectType").on("change", function () { hidestate(); });
+            hidestate();
+        }
+    });
+</script>
+
+<script type="text/html" data-template-name="DACs">
+    <div class="form-row" style="min-width: 540px">
+		<label><i class="fa fa-cog"></i> DAC</label>
+        <select type="text" id="node-input-selectType" style="width:100px;">
+            <option value="select" label="Select" selected></option>
+            <option value="1" label="Voltage"></option>
+            <option value="2" label="Current"></option>
+        </select>
+    </div>
+    <div class="form-row" style="min-width: 540px" id="node-set-selectVoltage">
+		<label><i class="fa fa-cog"></i> VO</label>
+        <select type="text" id="node-input-selectVoltage" style="width:100px;">
+            <option value="select" label="Select" selected></option>
+            <option value="0" label="VO 1"></option>
+            <option value="1" label="VO 2"></option>
+        </select>
+    </div>
+    <div class="form-row" style="min-width: 540px" id="node-set-selectCurrent">
+		<label><i class="fa fa-cog"></i> IO</label>
+        <select type="text" id="node-input-selectCurrent" style="width:100px;">
+            <option value="select" label="Select" selected></option>
+            <option value="2" label="IO 1"></option>
+            <option value="3" label="IO 2"></option>
+        </select>
+    </div>
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+</script>
+
+<script type="text/javascript">
+
+    var select2out = {
+        "0": "1", "1": "2", "2": "1", "3": "2"
+    }
+
+    RED.nodes.registerType('DACs', {
+        category: 'PiCase',
+        color: "#C6EFD1",
+        icon: 'status.png',
+        defaults: {
+            name: { value: "" },
+            selectType: { value: "select" },
+            selectVoltage: { value: "select" },
+            selectCurrent: { value: "select" }
+        },
+        inputs: 1,
+        outputs: 0,
+
+        label: function () {
+            if (this.selectType == "select") { return this.name || "DAC:" }
+            else if (this.selectType == "1" && this.selectVoltage != "select") { return this.name || "VO: " + select2out[this.selectVoltage] }
+            else if (this.selectType == "1" && this.selectVoltage == "select") { return this.name || "VO: " }
+            else if (this.selectType == "2" && this.selectCurrent != "select") { return this.name || "OI: " + select2out[this.selectCurrent] }
+            else if (this.selectType == "2" && this.selectCurrent == "select") { return this.name || "OI: " }
+        },
+        inputLabels: function () {
+            if (this.selectType == "1" && this.selectVoltage != "select") { return "VO" + select2out[this.selectVoltage] }
+            else if (this.selectType == "1" && this.selectVoltage == "select") { return "VO undefined" }
+            else if (this.selectType == "2" && this.selectCurrent != "select") { return "IO" + select2out[this.selectCurrent] }
+            else if (this.selectType == "2" && this.selectCurrent == "select") { return "IO undefined" }
+            else { return "ADC: undefined" }
+        },
+        oneditprepare: function () {
+            var hidestate = function () {
+                if ($("#node-input-selectType").val() == 1) {
+                    $('#node-set-selectVoltage').show();
+                    $('#node-set-selectCurrent').hide();
+                }
+                if ($("#node-input-selectType").val() == 2) {
+                    $('#node-set-selectVoltage').hide();
+                    $('#node-set-selectCurrent').show();
+                }
+                if ($("#node-input-selectType").val() === "select") {
+                    $("#node-set-selectCurrent").hide();
+                    $('#node-set-selectVoltage').hide();
+                }
+            };
+            $("#node-input-selectType").on("change", function () { hidestate(); });
+            hidestate();
+        }
+    });
+</script>
+
+<script type="text/html" data-help-name="DIs">
+  <p>Entradas digitales de la PiCase.</p>
+  <p>
+    El nodo envía un <code>msg.payload</code> de <b>0</b> o <b>1</b>
+    tipo <b>Number</b> dependiendo del estado lógico del pin seleccionado.
+    <p><b>Advertencia:</b> las entradas digitales son TTL por lo que su tensión máxima recomendada son a 5 VDC.</p>
+  </p>
+</script>
+
+<script type="text/html" data-help-name="Buttons">
+  <p>Pulsadores de la PiCase.</p>
+  <p>
+    El nodo envía un <code>msg.payload</code> de <b>0</b> o <b>1</b>
+    tipo <b>Number</b> dependiendo del estado lógico del pulsador seleccionado. 
+  </p>
+</script>
+
+<script type="text/html" data-help-name="LEDs">
+  <p>LEDs de la PiCase.</p>
+  <p>
+    El nodo puede recibir <b>0</b> o <b>1</b> tipo <b>Number</b> o tipo <b>String</b> como <code>msg.payload</code>,  
+    tambien puede recibir <b>true</b> o <b>false</b> tipo <b>String</b> como <code>msg.payload</code>. 
+  </p>
+  <p><b>Nota:</b> el valor inicial del pin cuando se realiza un <code>Deploy</code> es 0.</p>
+</script>
+
+<script type="text/html" data-help-name="DOs">
+  <p>Salidas digitales de la PiCase.</p>
+  <p>
+    El nodo puede recibir <b>0</b> o <b>1</b> tipo <b>Number</b> o tipo <b>String</b> como <code>msg.payload</code>,  
+    tambien puede recibir <b>true</b> o <b>false</b> tipo <b>String</b> como <code>msg.payload</code>. 
+  </p>
+  <p><b>Advertencia:</b> las salidas son a relé y soportan un tensión máxima de <b>125 VAC</b> a <b>0.3 A</b> o <b>24 VDC</b> a <b>1 A</b>.</p>
+  <p><b>Nota:</b> el valor inicial del pin cuando se realiza un <code>Deploy</code> es 0.</p>
+</script>
+
+<script type="text/html" data-help-name="ADCs">
+  <p>Entradas analógicas de la PiCase.</p>
+  <p>
+    El nodo envía valores entre <b>0</b> y <b>100</b> tipo <b>Number</b> como <code>msg.payload</code>.
+    Las entradas de tensión admiten valores de <b>0 V</b> a <b>10 V</b>, 
+    y las entradas de corriente valores de <b>4 mA</b> a <b>20 mA</b>.
+    El rango de valores de ambas unidades de medida se encuentran expresadas en <b>porcentaje</b>.
+  </p>
+</script>
+
+<script type="text/html" data-help-name="DACs">
+  <p>Salidas analógicas de la PiCase.</p>
+  <p>
+    El nodo recibe valores entre <b>0</b> y <b>100</b> tipo <b>Number</b> o tipo <b>String</b> como <code>msg.payload</code>.
+    Las salidas de tensión cuenta con un rango de <b>0 V</b> a <b>10 V</b>, 
+    y las salidas de corriente con un rango de <b>4 mA</b> a <b>20 mA</b>.
+    El rango de valores de ambas unidades de medida se encuentran expresadas en <b>porcentaje</b>.
+  </p>
+  <p>
+    En caso de mandar un valor mayor que 100 el valor que tomara el DAC será de <b>100</b> o
+    en caso de mandar un valor menor a 0 el valor que tomara el DAC será de <b>0</b>.
+  </p>
+  <p><b>Nota:</b> el valor inicial del pin cuando se realiza un <code>Deploy</code> es 0.</p>
+</script>
