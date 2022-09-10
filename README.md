@@ -18,13 +18,13 @@ Libreria para controlar los pines de la PiCase por medio de [Node-RED](https://n
 ## Instalación
 Use el menú de Node-RED y realice la instalación por medio del *Manage palette*, o ejecute el siguiente comando en el directorio de Node-RED, normalmente es `~/.node-red`.
 
-    	npm install node-red-picase
+    	npm i @dsyunda/node-red-contrib-picase
 
 Después de realizar la instalación del paquete, se debe ejecutar un archivo bash que nos va a dar permisos en el archivo *control.py* y también a crear y activar un servicio para poder ejecutar el archivo *I2C_SPI.py* cada vez que reiniciemos la PiCase.
 
 Abra una nueva terminal y ejecute los siguientes comandos.
 
-    cd ~/.node-red/node_modules/node-red-picase
+    cd ~/.node-red/node_modules/@dsyunda/node-red-contrib-picase
     sh config.sh
 
 Después reiniciaremos la PiCase para aplicar los cambios. Cuando reinicie la PiCase ejecutaremos el siguiente comando en el terminal para corroborar de que el servicio se esté ejecutando con éxito.

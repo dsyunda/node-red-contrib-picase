@@ -4,7 +4,7 @@ After=multi-user.target
 
 [Service]
 Type=idle
-ExecStart=/usr/bin/python3 /home/pi/.node-red/node_modules/node-red-picase/I2C_SPI.py
+ExecStart=/usr/bin/python3 /home/pi/.node-red/node_modules/@dsyunda/node-red-contrib-picase/I2C_SPI.py
 
 [Install]
 WantedBy=multi-user.target

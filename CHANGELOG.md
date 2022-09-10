@@ -3,6 +3,12 @@ Todos los cambios de versiones en este proyecto se documentarán en este archivo
 
 El formato se basa en [Keep a Changelog](https://keepachangelog.com/en/1.0.0/ "Keep a Changelog").
 
+## 1.0.1 - 2022-09-09
+
+### Added
+- Cambios de los comandos de instalación del archivo README.
+- Cambios de la ruta del servicio en el archivo PiCase.service.
+ 
 ## 1.0.0 - 2022-09-09
 
 ### Added
