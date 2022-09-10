@@ -1,4 +1,4 @@
-**node-red-picase**
+**node-red-contrib-picase**
 =====================
 Libreria para controlar los pines de la PiCase por medio de [Node-RED](https://nodered.org/ "Node-Red"), donde el funcionamiento lo realiza librerias de python como *[RPi.GPIO](https://pypi.org/project/RPi.GPIO/ "RPi.GPIO")* para controlar los pines digitales de la Raspberry,  *[smbus](https://pypi.org/project/smbus2/ "smbus")* para controlar los [MCP23017](https://www.microchip.com/en-us/product/mcp23017 "MCP23017") (expansores digitales) por medio de I2C y *[spidev](https://pypi.org/project/spidev/ "spidev")* para  controlar los expansores analogicos los cuales  son el [MCP3204](https://www.microchip.com/en-us/product/MCP3204 "MCP3204") (ADC de 12 bits) y [MCP4822](https://www.microchip.com/en-us/product/MCP4822 "MCP4822") (DAC de 12 bits) que se comunican por medio de SPI.
 
