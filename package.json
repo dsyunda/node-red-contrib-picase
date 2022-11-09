@@ -1,6 +1,6 @@
 {
   "name": "@dsyunda/node-red-contrib-picase",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Libreria de la Control PiCase para Node-RED",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

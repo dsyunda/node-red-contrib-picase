@@ -1,7 +1,7 @@
 module.exports = function (RED) {
     "use strict";
+    
     var execSync = require('child_process').execSync;
-    var exec = require('child_process').exec;
     var spawn = require('child_process').spawn
 
     var testCommand = 'python3 ' + __dirname + '/testcontrol.py';
@@ -26,7 +26,7 @@ module.exports = function (RED) {
         var node = this;
 
         if (allOK === true) {
-            if (node.selectInput !== undefined) {
+            if (node.selectInput !== "select") {
                 node.child = spawn(controlCommand, ["di", node.selectInput]);
                 node.running = true;
                 node.status({ fill: "yellow", shape: "dot", text: "DI status ok" });
@@ -35,7 +35,7 @@ module.exports = function (RED) {
                     var d = data.toString().trim().split("\n");
                     for (var i = 0; i < d.length; i++) {
                         if (d[i] === '') { return; }
-                        if (node.running !== -1 && !isNaN(Number(d[i]))) {
+                        if (node.running && !isNaN(Number(d[i]))) {
                             node.send({ payload: Number(d[i]) });
                         }
                         node.status({ fill: "green", shape: "dot", text: d[i] });
@@ -106,7 +106,7 @@ module.exports = function (RED) {
                     var d = data.toString().trim().split("\n");
                     for (var i = 0; i < d.length; i++) {
                         if (d[i] === '') { return; }
-                        if (node.running !== -1 && !isNaN(Number(d[i]))) {
+                        if (node.running && !isNaN(Number(d[i]))) {
                             node.send({ payload: Number(d[i]) });
                         }
                         node.status({ fill: "green", shape: "dot", text: d[i] });
@@ -163,7 +163,7 @@ module.exports = function (RED) {
     function LedOutNode(n) {
         RED.nodes.createNode(this, n);
         this.selectInput = n.selectInput;
-        this.Reset = this.selectInput;
+
         var node = this;
 
         function inputlistener(msg, send, done) {
@@ -177,7 +177,7 @@ module.exports = function (RED) {
                     node.child.stdin.write(out + "\n", () => {
                         if (done) { done(); }
                     });
-                    node.status({ fill: "green", shape: "dot", text: (Number(msg.payload)).toString() });
+                    node.status({ fill: "green", shape: "dot", text: out.toString() });
                 }
                 else {
                     node.error(RED._("python command not found"), msg);
@@ -264,7 +264,7 @@ module.exports = function (RED) {
                     node.child.stdin.write(out + "\n", () => {
                         if (done) { done(); }
                     });
-                    node.status({ fill: "green", shape: "dot", text: (Number(msg.payload)).toString() });
+                    node.status({ fill: "green", shape: "dot", text: out.toString() });
                 }
                 else {
                     node.error(RED._("python command not found"), msg);
@@ -340,7 +340,6 @@ module.exports = function (RED) {
         this.selectType = n.selectType;
         this.selectVoltage = n.selectVoltage;
         this.selectCurrent = n.selectCurrent;
-        this.running = -1;
 
         var node = this;
 
@@ -354,7 +353,7 @@ module.exports = function (RED) {
                     var d = data.toString().trim().split("\n");
                     for (var i = 0; i < d.length; i++) {
                         if (d[i] === '') { return; }
-                        if (node.running !== -1 && !isNaN(Number(d[i]))) {
+                        if (node.running && !isNaN(Number(d[i]))) {
                             node.send({ payload: Number(d[i]) });
                         }
                         node.status({ fill: "green", shape: "dot", text: d[i] });
@@ -394,7 +393,7 @@ module.exports = function (RED) {
                     var d = data.toString().trim().split("\n");
                     for (var i = 0; i < d.length; i++) {
                         if (d[i] === '') { return; }
-                        if (node.running !== -1 && !isNaN(Number(d[i]))) {
+                        if (node.running && !isNaN(Number(d[i]))) {
                             node.send({ payload: Number(d[i]) });
                         }
                         node.status({ fill: "green", shape: "dot", text: d[i] });
@@ -426,7 +425,7 @@ module.exports = function (RED) {
 
             }
             else {
-                node.warn(RED._("invalid pin") + ": " + node.selectInput);
+                node.warn(RED._("invalid pin") + ": por favor seleccione un pin en el nodo ADC" );
             }
         }
         else {
@@ -436,7 +435,6 @@ module.exports = function (RED) {
             });
         }
 
-
         node.on("close", function (done) {
             node.status({ fill: "grey", shape: "ring", text: "ADC closed" });
             delete node.selectType;
@@ -444,7 +442,7 @@ module.exports = function (RED) {
             delete node.selectCurrent;
             if (node.child != null) {
                 node.finished = done;
-                node.child.kill('SIGINT');
+                node.child.kill('SIGKILL');
             }
             else { done(); }
         });
@@ -470,7 +468,7 @@ module.exports = function (RED) {
                     node.child.stdin.write(out + "\n", () => {
                         if (done) { done(); }
                     });
-                    node.status({ fill: "green", shape: "dot", text: (Number(out)).toString() });
+                    node.status({ fill: "green", shape: "dot", text: out.toString() });
                 }
                 else {
                     node.error(RED._("python command not found"), msg);

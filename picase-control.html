@@ -161,7 +161,7 @@
         label: function () {
             return this.name || this.selectInput == "select" ? this.name || "DO: " : "DO: " + this.selectInput;
         },
-        inputLabels: function () { return "DO " + this.selectInput; }
+        inputLabels: function () { return this.selectInput == "select" ? "DO " + undefined : "DO" + this.selectInput; }
     });
 </script>
 
@@ -312,7 +312,7 @@
             else if (this.selectType == "1" && this.selectVoltage == "select") { return "VO undefined" }
             else if (this.selectType == "2" && this.selectCurrent != "select") { return "IO" + select2out[this.selectCurrent] }
             else if (this.selectType == "2" && this.selectCurrent == "select") { return "IO undefined" }
-            else { return "ADC: undefined" }
+            else { return "DAC: undefined" }
         },
         oneditprepare: function () {
             var hidestate = function () {

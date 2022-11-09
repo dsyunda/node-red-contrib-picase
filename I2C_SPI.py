@@ -56,7 +56,7 @@ bus.write_byte_data(address2, reg_config_IODIRA, 0x00)#MCP23017-2
 
 #Inicializamos salidas de los leds y digitales apagadas
 bus.write_byte_data(address1, reg_GPIOA, 0x00)#MCP23017-1
-bus.write_byte_data(address2, reg_GPIOA, 0x00)#MCP23017-2
+bus.write_byte_data(address2, reg_GPIOA, 0xff)#MCP23017-2
         
 #Lectura inicial del puerto de entrada de los pulsadores        
 port_1 = bus.read_byte_data(address1, reg_GPIOB)
